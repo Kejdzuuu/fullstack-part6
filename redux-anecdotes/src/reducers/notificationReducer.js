@@ -1,13 +1,9 @@
-import store from '../store'
-
 const initialState = {
   message: '',
   visible: false
 }
 
 const reducer = (state = initialState, action) => {
-  console.log('state now: ', state)
-  console.log('action', action)
   switch(action.type) {
     case 'SHOW':
       return {message: action.message, visible: true}
