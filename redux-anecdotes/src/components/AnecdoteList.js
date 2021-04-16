@@ -17,7 +17,7 @@ const Anecdote = ({ anecdote, clickHandler }) => {
 }
 
 const AnecdoteList = (props) => {
-  const anecdotes = useSelector(state => state)
+  const anecdotes = useSelector(state => state.anecdotes)
   const dispatch = useDispatch()
 
   const vote = (id) => {

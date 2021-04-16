@@ -30,6 +30,7 @@ const reducer = (state = initialState, action) => {
         anecdote.id === action.data.id ? newAnecdote : anecdote
       ).sort((a, b) => b.votes - a.votes)
     case 'CREATE':
+      console.log(state)
       return [...state, action.data]
     default:
       return state
