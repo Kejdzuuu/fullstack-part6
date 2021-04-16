@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 const reducer = combineReducers({
   anecdotes: anecdoteReducer,
-  vote_count: notificationReducer
+  notification: notificationReducer
 })
 
 const store = createStore(reducer, composeWithDevTools())
