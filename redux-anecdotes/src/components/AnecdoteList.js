@@ -20,11 +20,19 @@ const Anecdote = ({ anecdote, clickHandler }) => {
 
 const AnecdoteList = (props) => {
   const filter = useSelector(state => state.filter)
-  const anecdotes = useSelector(state => state.anecdotes.filter(anecdote => anecdote.content.toLowerCase().includes(filter.toLowerCase())))
+  const anecdotes = useSelector(state =>
+    state.anecdotes.filter(anecdote =>
+      anecdote.content
+        .toLowerCase()
+        .includes(filter.toLowerCase())
+    )
+    .sort((a, b) => b.votes - a.votes)
+  )
+
   const dispatch = useDispatch()
 
   const vote = (anecdote) => {
-    dispatch(voteForAnecdote(anecdote.id))
+    dispatch(voteForAnecdote(anecdote))
     dispatch(showNotification(`You voted for '${anecdote.content}'`))
     setTimeout(() => dispatch(hideNotification()), 5000)
   }
