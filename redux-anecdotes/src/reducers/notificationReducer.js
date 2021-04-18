@@ -3,6 +3,8 @@ const initialState = {
   visible: false
 }
 
+let timeoutID = null
+
 const reducer = (state = initialState, action) => {
   switch(action.type) {
     case 'SHOW':
@@ -15,15 +17,20 @@ const reducer = (state = initialState, action) => {
 }
 
 export const showNotification = (message, timeoutInSeconds) => {
+  if (timeoutID !== null) {
+    clearTimeout(timeoutID)
+  }
+
   return async dispatch => {
     dispatch({
       type: 'SHOW',
       message
     })
-    await new Promise(f => setTimeout(f, timeoutInSeconds * 1000));
+    await new Promise(f => timeoutID = setTimeout(f, timeoutInSeconds * 1000));
     dispatch({
       type: 'HIDE'
     })
+    timeoutID = null
   }
 }
 
